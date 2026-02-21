@@ -23,7 +23,7 @@ const Header = () => {
 };
 
 const RestaurantCard = (props) => {
-  console.log(props);
+  const { resName, cuisine } = props;
   return (
     <div className="restaurant-card" style={{ backgroundColor: "#f0f0f0" }}>
       <img
@@ -31,8 +31,8 @@ const RestaurantCard = (props) => {
         alt="restaurant-logo"
         src="https://imgmedia.lbb.in/media/2018/12/5c02f558b2944367333a7da7_1543697752379.jpg?w=1200&h=628&fill=blur&fit=fill"
       />
-      <h3>{props.resName}</h3>
-      <h4>{props.cuisine}</h4>
+      <h3>{resName}</h3>
+      <h4>{cuisine}</h4>
       <h4>4.5 ⭐</h4>
       <h4>38 min</h4>
     </div>
