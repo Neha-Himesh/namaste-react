@@ -1,11 +1,13 @@
 import RestaurantCard from "./RestaurantCard";
 import resList from "../utils/mockData";
 import { useState } from "react";
+import SearchBox from "./SearchBox";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState(resList);
   return (
     <div className="body">
+      <SearchBox />
       <div className="filter">
         <button
           className="filter-btn"
