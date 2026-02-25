@@ -1,19 +1,42 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import SearchBox from "./SearchBox";
 import FilterButton from "./FilterButton";
-import resList from "../utils/mockData";
 
 const Body = () => {
-  const [listOfRestaurants, setListOfRestaurants] = useState(resList);
+  const [listOfRestaurants, setListOfRestaurants] = useState([]);
+  const [allRestaurants, setAllRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [toggleTopRatedButton, setToggleTopRatedButton] = useState(false);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9352403&lng=77.624532&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING",
+    );
+    const json = await data.json();
+    console.log(json);
+    const restaurants =
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants;
+    setListOfRestaurants(restaurants);
+    setAllRestaurants(restaurants);
+  };
+
+  if (listOfRestaurants.length === 0) {
+    return <h1>Loading...</h1>;
+  }
 
   return (
     <div className="body">
       <SearchBox
         searchText={searchText}
         setSearchText={setSearchText}
+        listOfRestaurants={listOfRestaurants}
+        allRestaurants={allRestaurants}
         setListOfRestaurants={setListOfRestaurants}
         setToggleTopRatedButton={setToggleTopRatedButton}
       />
@@ -22,6 +45,8 @@ const Body = () => {
         toggleTopRatedButton={toggleTopRatedButton}
         setToggleTopRatedButton={setToggleTopRatedButton}
         setSearchText={setSearchText}
+        listOfRestaurants={listOfRestaurants}
+        allRestaurants={allRestaurants}
         setListOfRestaurants={setListOfRestaurants}
       />
 

@@ -1,6 +1,8 @@
 const SearchBox = ({
   searchText,
   setSearchText,
+  listOfRestaurants,
+  allRestaurants,
   setListOfRestaurants,
   setToggleTopRatedButton,
 }) => {
@@ -15,7 +17,7 @@ const SearchBox = ({
           setSearchText(value);
           setToggleTopRatedButton(false);
 
-          const filtered = resList.filter((restaurant) =>
+          const filtered = allRestaurants.filter((restaurant) =>
             restaurant.info.name.toLowerCase().includes(value.toLowerCase()),
           );
 
