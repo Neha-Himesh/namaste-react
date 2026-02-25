@@ -1,24 +1,29 @@
-import { useState } from "react";
-import resList from "../utils/mockData";
-import RestaurantCard from "./RestaurantCard";
-
-const SearchBox = () => {
-  const [searchText, setSearchText] = useState("");
+const SearchBox = ({
+  searchText,
+  setSearchText,
+  setListOfRestaurants,
+  setToggleTopRatedButton,
+}) => {
   return (
-    <div>
+    <div className="search-container">
       <input
         type="text"
         placeholder="Whats in your mind?"
         value={searchText}
         onChange={(e) => {
-          setSearchText(e.target.value);
+          const value = e.target.value;
+          setSearchText(value);
+          setToggleTopRatedButton(false);
+
+          const filtered = resList.filter((restaurant) =>
+            restaurant.info.name.toLowerCase().includes(value.toLowerCase()),
+          );
+
+          setListOfRestaurants(filtered);
         }}
       />
-      {/* {  console.log(searchFliteredresList);
-          return searchFliteredresList.map((restaurant) => (
-            <RestaurantCard key={restaurant.info.id} resData={restaurant} />
-          ));} */}
     </div>
   );
 };
+
 export default SearchBox;
