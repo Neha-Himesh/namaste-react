@@ -32,23 +32,25 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <SearchBox
-        searchText={searchText}
-        setSearchText={setSearchText}
-        listOfRestaurants={listOfRestaurants}
-        allRestaurants={allRestaurants}
-        setListOfRestaurants={setListOfRestaurants}
-        setToggleTopRatedButton={setToggleTopRatedButton}
-      />
+      <div className="filter-search-container">
+        <SearchBox
+          searchText={searchText}
+          setSearchText={setSearchText}
+          listOfRestaurants={listOfRestaurants}
+          allRestaurants={allRestaurants}
+          setListOfRestaurants={setListOfRestaurants}
+          setToggleTopRatedButton={setToggleTopRatedButton}
+        />
 
-      <FilterButton
-        toggleTopRatedButton={toggleTopRatedButton}
-        setToggleTopRatedButton={setToggleTopRatedButton}
-        setSearchText={setSearchText}
-        listOfRestaurants={listOfRestaurants}
-        allRestaurants={allRestaurants}
-        setListOfRestaurants={setListOfRestaurants}
-      />
+        <FilterButton
+          toggleTopRatedButton={toggleTopRatedButton}
+          setToggleTopRatedButton={setToggleTopRatedButton}
+          setSearchText={setSearchText}
+          listOfRestaurants={listOfRestaurants}
+          allRestaurants={allRestaurants}
+          setListOfRestaurants={setListOfRestaurants}
+        />
+      </div>
 
       <div className="restaurant-container">
         {listOfRestaurants.map((restaurant) => (
