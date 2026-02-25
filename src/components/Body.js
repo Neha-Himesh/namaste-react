@@ -1,21 +1,46 @@
 import RestaurantCard from "./RestaurantCard";
 import resList from "../utils/mockData";
 import { useState } from "react";
-import SearchBox from "./SearchBox";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState(resList);
+  const [searchText, setSearchText] = useState("");
+  const [toggleTopRatedButton, setToggleTopRatedButton] = useState(false);
   return (
     <div className="body">
-      <SearchBox />
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Whats in your mind?"
+          value={searchText}
+          onChange={(e) => {
+            setSearchText(e.target.value);
+            setToggleTopRatedButton(false);
+            const searchFliteredresList = resList.filter((restaurant) =>
+              restaurant.info.name
+                .toLowerCase()
+                .includes(e.target.value.toLowerCase()),
+            );
+            setListOfRestaurants(searchFliteredresList);
+          }}
+        />
+      </div>
       <div className="filter">
         <button
-          className="filter-btn"
+          className={`filter-btn ${toggleTopRatedButton ? "active-btn" : ""}`}
+          id="top-rated-btn"
           onClick={() => {
-            const listOfRestaurantsFiltered = resList.filter(
-              (restaurant) => restaurant.info.avgRating > 4,
-            );
-            setListOfRestaurants(listOfRestaurantsFiltered);
+            const newValue = !toggleTopRatedButton;
+            setToggleTopRatedButton(!toggleTopRatedButton);
+            setSearchText("");
+            if (newValue) {
+              const listOfRestaurantsFiltered = resList.filter(
+                (restaurant) => restaurant.info.avgRating > 4.5,
+              );
+              setListOfRestaurants(listOfRestaurantsFiltered);
+            } else {
+              setListOfRestaurants(resList);
+            }
           }}
         >
           Top Rated Restaurants
