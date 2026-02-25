@@ -34,6 +34,9 @@
 .search {
   padding: 10px;
 }
+.search-container {
+  margin: 10px;
+}
 .restaurant-logo {
   width: 100%;
 }
