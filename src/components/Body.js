@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import SearchBox from "./SearchBox";
 import FilterButton from "./FilterButton";
+import Shimmer from "./Shimmer";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -26,11 +27,10 @@ const Body = () => {
     setAllRestaurants(restaurants);
   };
 
-  if (listOfRestaurants.length === 0) {
-    return <h1>Loading...</h1>;
-  }
-
-  return (
+  //Conditional Rendering
+  return listOfRestaurants.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div className="body">
       <SearchBox
         searchText={searchText}
