@@ -1,9 +1,9 @@
 const SearchBox = ({
   searchText,
   setSearchText,
-  listOfRestaurants,
+  listOfRestaurantsFiltered,
   allRestaurants,
-  setListOfRestaurants,
+  setListOfRestaurantsFiltered,
   setToggleTopRatedButton,
 }) => {
   return (
@@ -21,7 +21,7 @@ const SearchBox = ({
             restaurant.info.name.toLowerCase().includes(value.toLowerCase()),
           );
 
-          setListOfRestaurants(filtered);
+          setListOfRestaurantsFiltered(filtered);
         }}
       />
     </div>

@@ -5,7 +5,9 @@ import FilterButton from "./FilterButton";
 import Shimmer from "./Shimmer";
 
 const Body = () => {
-  const [listOfRestaurants, setListOfRestaurants] = useState([]);
+  const [listOfRestaurantsFiltered, setListOfRestaurantsFiltered] = useState(
+    [],
+  );
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [toggleTopRatedButton, setToggleTopRatedButton] = useState(false);
@@ -19,16 +21,15 @@ const Body = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9352403&lng=77.624532&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING",
     );
     const json = await data.json();
-    console.log(json);
     const restaurants =
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
-    setListOfRestaurants(restaurants);
+    setListOfRestaurantsFiltered(restaurants);
     setAllRestaurants(restaurants);
   };
 
   //Conditional Rendering
-  return listOfRestaurants.length === 0 ? (
+  return allRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body">
@@ -36,9 +37,9 @@ const Body = () => {
         <SearchBox
           searchText={searchText}
           setSearchText={setSearchText}
-          listOfRestaurants={listOfRestaurants}
+          listOfRestaurantsFiltered={listOfRestaurantsFiltered}
           allRestaurants={allRestaurants}
-          setListOfRestaurants={setListOfRestaurants}
+          setListOfRestaurantsFiltered={setListOfRestaurantsFiltered}
           setToggleTopRatedButton={setToggleTopRatedButton}
         />
 
@@ -46,14 +47,14 @@ const Body = () => {
           toggleTopRatedButton={toggleTopRatedButton}
           setToggleTopRatedButton={setToggleTopRatedButton}
           setSearchText={setSearchText}
-          listOfRestaurants={listOfRestaurants}
+          listOfRestaurantsFiltered={listOfRestaurantsFiltered}
           allRestaurants={allRestaurants}
-          setListOfRestaurants={setListOfRestaurants}
+          setListOfRestaurantsFiltered={setListOfRestaurantsFiltered}
         />
       </div>
 
       <div className="restaurant-container">
-        {listOfRestaurants.map((restaurant) => (
+        {listOfRestaurantsFiltered.map((restaurant) => (
           <RestaurantCard key={restaurant.info.id} resData={restaurant} />
         ))}
       </div>

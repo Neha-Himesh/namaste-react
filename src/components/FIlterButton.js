@@ -2,9 +2,9 @@ const FilterButton = ({
   toggleTopRatedButton,
   setToggleTopRatedButton,
   setSearchText,
-  listOfRestaurants,
+  listOfRestaurantsFiltered,
   allRestaurants,
-  setListOfRestaurants,
+  setListOfRestaurantsFiltered,
 }) => {
   return (
     <div className="filter">
@@ -14,14 +14,13 @@ const FilterButton = ({
           const newValue = !toggleTopRatedButton;
           setToggleTopRatedButton(newValue);
           setSearchText("");
-          console.log("Inside filter button");
           if (newValue) {
             const filtered = allRestaurants.filter(
               (restaurant) => restaurant.info.avgRating > 4.5,
             );
-            setListOfRestaurants(filtered);
+            setListOfRestaurantsFiltered(filtered);
           } else {
-            setListOfRestaurants(allRestaurants);
+            setListOfRestaurantsFiltered(allRestaurants);
           }
         }}
       >
