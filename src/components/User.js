@@ -23,13 +23,13 @@ class User extends React.Component {
       count: 0,
       count2: 2,
     };
-    console.log("Parent constructor called");
+    console.log("UserComponent constructor called");
   }
   componentDidMount() {
-    console.log("Parent Component Mounted");
+    console.log("UserComponent Mounted");
   }
   render() {
-    console.log("Parent Component Rendered");
+    console.log("UserComponent Rendered");
     return (
       <div className="user-card">
         <h2>Name: {this.props.name}</h2>
@@ -37,7 +37,6 @@ class User extends React.Component {
         <h4>Contact: neha@example.com</h4>
         <h4> Count = {this.state.count}</h4>
         <h4> Count2 = {this.state.count2}</h4>
-        <UserClass name={"Anwesha"} location={"Hyderabad"} />
       </div>
     );
   }
