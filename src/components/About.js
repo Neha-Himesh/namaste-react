@@ -35,6 +35,7 @@ class About extends React.Component {
         <img src={avatar_url} alt="User Avatar" width="200" />
         <p>Name: {name}</p>
         <p>Location: {location}</p>
+        <User name={"Neha"} />
       </div>
     );
   }
