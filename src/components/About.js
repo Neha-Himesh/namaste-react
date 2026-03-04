@@ -19,11 +19,16 @@ class About extends React.Component {
     this.setState({
       userJson: json,
     });
+    this.timer = setInterval(() => {
+      console.log("Interval called");
+    }, 1000);
   }
   componentDidUpdate() {
     console.log("Component Updated");
   }
   componentWillUnmount() {
+    clearInterval(this.timer);
+    console.log("Interval cleared");
     console.log("Component Unmounted");
   }
   render() {
@@ -35,7 +40,7 @@ class About extends React.Component {
         <img src={avatar_url} alt="User Avatar" width="200" />
         <p>Name: {name}</p>
         <p>Location: {location}</p>
-        <User name={"Neha"} />
+        {/* <User name={"Neha"} /> */}
       </div>
     );
   }
