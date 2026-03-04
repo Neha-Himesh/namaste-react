@@ -2,34 +2,15 @@ import React from "react";
 class UserClass extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      count: 0,
-    };
-    console.log("UserClass Component constructor called");
   }
-  componentDidMount() {
-    console.log("UserClass Component Mounted");
-  }
+  componentDidMount() {}
   render() {
-    console.log("UserClass Component Rendered");
     const { name, location } = this.props;
-    const { count } = this.state;
     return (
       <div className="user-card">
         <h2>Name: {name}</h2>
         <h3>Location: {location}</h3>
         <h4>Contact: neha@example.com</h4>
-        <h5>{count}</h5>
-        <button
-          onClick={() => {
-            this.setState({
-              count: this.state.count + 1,
-            });
-          }}
-        >
-          {" "}
-          Count Increase
-        </button>
       </div>
     );
   }
