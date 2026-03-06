@@ -4,6 +4,7 @@ import SearchBox from "./SearchBox";
 import FilterButton from "./FilterButton";
 import Shimmer from "./Shimmer";
 import useBody from "../utils/useBody";
+import useOnlineStatus from "../utils/useOnlineStatus.js";
 
 const Body = () => {
   const [searchText, setSearchText] = useState("");
@@ -15,6 +16,14 @@ const Body = () => {
     setListOfRestaurantsFiltered,
     setAllRestaurants,
   ] = useBody();
+  const onlineStatus = useOnlineStatus();
+  if (onlineStatus === false)
+    return (
+      <h1>
+        {" "}
+        Looks like you are offline!! Please check your internet connection.
+      </h1>
+    );
   //Conditional Rendering
   return allRestaurants.length === 0 ? (
     <Shimmer />
