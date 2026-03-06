@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
-import resMenu from "../utils/MockDataRestaurantMenu";
 import Shimmer from "./Shimmer";
+import { useParams } from "react-router-dom";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 const RestaurantMenu = () => {
-  const [resInfo, setResInfo] = useState(null);
+  const { resId } = useParams();
 
-  const data = resMenu;
-  setResInfo(data);
+  const resInfo = useRestaurantMenu(resId);
 
   // const { name, cuisines, cloudinaryImageId, costForTwoMessage } =
   //   resInfo?.data?.cards[2]?.card?.card?.info;

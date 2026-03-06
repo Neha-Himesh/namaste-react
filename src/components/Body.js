@@ -3,31 +3,18 @@ import RestaurantCard from "./RestaurantCard";
 import SearchBox from "./SearchBox";
 import FilterButton from "./FilterButton";
 import Shimmer from "./Shimmer";
+import useBody from "../utils/useBody";
 
 const Body = () => {
-  const [listOfRestaurantsFiltered, setListOfRestaurantsFiltered] = useState(
-    [],
-  );
-  const [allRestaurants, setAllRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [toggleTopRatedButton, setToggleTopRatedButton] = useState(false);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    const data = await fetch(
-      "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9352403&lng=77.624532&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING",
-    );
-    const json = await data.json();
-    const restaurants =
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants;
-    setListOfRestaurantsFiltered(restaurants);
-    setAllRestaurants(restaurants);
-  };
-
+  const [
+    listOfRestaurantsFiltered,
+    allRestaurants,
+    setListOfRestaurantsFiltered,
+    setAllRestaurants,
+  ] = useBody();
   //Conditional Rendering
   return allRestaurants.length === 0 ? (
     <Shimmer />
