@@ -9,7 +9,7 @@ const SearchBox = ({
   return (
     <div className="search-container m-4 p-4">
       <input
-        className="border border-black border solid"
+        className="border border-black border-solid"
         type="text"
         placeholder="Whats in your mind?"
         value={searchText}
