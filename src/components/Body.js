@@ -29,7 +29,7 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter-search-container">
+      <div className="filter-search-container flex items-center">
         <SearchBox
           searchText={searchText}
           setSearchText={setSearchText}
@@ -49,7 +49,7 @@ const Body = () => {
         />
       </div>
 
-      <div className="restaurant-container">
+      <div className="restaurant-container flex flex-wrap">
         {listOfRestaurantsFiltered.map((restaurant) => (
           <RestaurantCard key={restaurant.info.id} resData={restaurant} />
         ))}

@@ -7,8 +7,9 @@ const SearchBox = ({
   setToggleTopRatedButton,
 }) => {
   return (
-    <div className="search-container">
+    <div className="search-container m-4 p-4">
       <input
+        className="border border-black border solid"
         type="text"
         placeholder="Whats in your mind?"
         value={searchText}

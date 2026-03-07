@@ -9,7 +9,7 @@ const FilterButton = ({
   return (
     <div className="filter">
       <button
-        className={`filter-btn ${toggleTopRatedButton ? "active-btn" : ""}`}
+        className={`filter-btn px-4 m-4 py-2 rounded-lg ${toggleTopRatedButton ? "bg-cyan-900  text-white" : " bg-green-100"}`}
         onClick={() => {
           const newValue = !toggleTopRatedButton;
           setToggleTopRatedButton(newValue);
