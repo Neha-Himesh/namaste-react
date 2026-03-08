@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import SearchBox from "./SearchBox";
 import FilterButton from "./FilterButton";
 import Shimmer from "./Shimmer";
@@ -10,6 +10,7 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
   const [toggleTopRatedButton, setToggleTopRatedButton] = useState(false);
 
+  const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
   const [
     listOfRestaurantsFiltered,
     allRestaurants,
@@ -54,6 +55,18 @@ const Body = () => {
           <RestaurantCard key={restaurant.info.id} resData={restaurant} />
         ))}
       </div>
+      {/* <div className="restaurant-container flex flex-wrap">
+        {listOfRestaurantsFiltered.map((restaurant) =>
+          restaurant.data.promoted ? (
+            <RestaurantCardPromoted
+              key={restaurant.info.id}
+              resData={restaurant}
+            />
+          ) : (
+            <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+          ),
+        )} */}
+      {/* </div> */}
     </div>
   );
 };
