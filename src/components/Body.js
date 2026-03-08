@@ -55,6 +55,9 @@ const Body = () => {
           <RestaurantCard key={restaurant.info.id} resData={restaurant} />
         ))}
       </div>
+
+      {/* Current Swiggy API doesnt have promoted value in the object received from API so I am just including below as a sample if it had promoted value and if we had to add it to the component */}
+
       {/* <div className="restaurant-container flex flex-wrap">
         {listOfRestaurantsFiltered.map((restaurant) =>
           restaurant.data.promoted ? (
@@ -65,8 +68,8 @@ const Body = () => {
           ) : (
             <RestaurantCard key={restaurant.info.id} resData={restaurant} />
           ),
-        )} */}
-      {/* </div> */}
+        )}
+        </div> */}
     </div>
   );
 };
