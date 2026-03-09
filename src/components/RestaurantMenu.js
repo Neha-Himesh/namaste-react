@@ -13,15 +13,21 @@ const RestaurantMenu = () => {
     resInfo?.data?.cards[3]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
       ?.card;
 
+  const categories =
+    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+      (card) =>
+        card.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory",
+    );
   return resInfo === null ? (
     <Shimmer />
   ) : (
-    <div className="menu">
+    <div className="menu text-center">
       {/* <h1>{name}</h1>
       <h3>{cuisines.join(", ")}</h3>
       <h3>{costForTwoMessage}</h3> */}
-      <h1>{name}</h1>
-      <p>
+      <h1 className="font-bold my-6 text-2xl">{name}</h1>
+      <p className="font-bold text-lg">
         {cuisines.join(", ")} - {costForTwoMessage}
       </p>
       <h2>Menu</h2>
@@ -32,6 +38,9 @@ const RestaurantMenu = () => {
           </li>
         ))}
       </ul>
+      {categories.map((category) => (
+        <RestaurantCategory data={category?.card?.card} />
+      ))}
     </div>
   );
 };
