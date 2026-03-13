@@ -25,6 +25,7 @@ const Body = () => {
         Looks like you are offline!! Please check your internet connection.
       </h1>
     );
+  const { loggedInUser, setUserName } = useContext(UserContext);
   //Conditional Rendering
   return allRestaurants.length === 0 ? (
     <Shimmer />
@@ -47,6 +48,11 @@ const Body = () => {
           listOfRestaurantsFiltered={listOfRestaurantsFiltered}
           allRestaurants={allRestaurants}
           setListOfRestaurantsFiltered={setListOfRestaurantsFiltered}
+        />
+        <input
+          className="border border-black p-2"
+          value={loggedInUser}
+          onChange={(e) => setUserName(e.target.value)}
         />
       </div>
 
